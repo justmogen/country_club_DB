@@ -17,7 +17,7 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     INSERT INTO audit.audit_logs (table_name, operation_type, old_data, new_data, changed_by)
-    VALUES ('members', TG_OP, ROW_TO_JSON,(OLD), ROW_TO_JSON,(NEW), SESSION_USER);
+    VALUES ('members', TG_OP, ROW_TO_JSON(OLD), ROW_TO_JSON(NEW), SESSION_USER);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
