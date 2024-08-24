@@ -36,7 +36,7 @@ SET membership_status = 'Suspended'
 WHERE memid = 9;
 
 -- CREATE VIEW cd.member_full_details AS
-SELECT
+EXPLAIN ANALYZE SELECT
     m.surname,
     m.firstname,
     a.street,

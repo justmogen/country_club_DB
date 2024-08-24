@@ -1,7 +1,7 @@
 -- query performance on frequently used WHERE & JOIN clauses
 
-
-CREATE INDEX idx_members_lastname ON cd.members(surname);
+-- DROP INDEX cd.idx_members_lastname;
+CREATE INDEX idx_members ON cd.members(surname, firstname);
 
 -- Index on membership type for faster grouping or filtering by membership type
 CREATE INDEX idx_members_membership_type ON cd.members(membership_type_id);
@@ -14,3 +14,17 @@ CREATE INDEX idx_payments_date_member ON memb_payment.payments(payment_date, mem
 
 -- Index on billing due dates to quickly find overdue bills
 CREATE INDEX idx_billing_due_date ON memb_payment.billing(due_date);
+
+CREATE INDEX idx_facilities_name ON cd.facilities (name);
+
+
+SELECT 
+    tablename,
+    indexname,
+    indexdef
+FROM 
+    pg_indexes
+WHERE 
+    schemaname = 'cd'
+ORDER BY 
+    tablename, indexname;
