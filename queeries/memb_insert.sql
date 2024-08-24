@@ -45,8 +45,7 @@ SELECT
     m.email,
     m.joindate,
     m.membership_status,
-    t.type_name,
-    m.recommendedby
+    t.type_name
 FROM cd.members m
 JOIN cd.phones p
 ON m.phone_id = p.phone_id
